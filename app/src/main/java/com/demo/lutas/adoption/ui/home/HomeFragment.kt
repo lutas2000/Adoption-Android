@@ -40,7 +40,7 @@ class HomeFragment : Fragment() {
 
     private fun initView() {
         swipe_layout.setOnRefreshListener {
-            viewModel.fetchMoreAnimals()
+            viewModel.fetchAnimals()
         }
         recycler.apply {
             adapter = animalAdapter
@@ -59,6 +59,9 @@ class HomeFragment : Fragment() {
                 is AnimalsState.Loading -> {
                     progress_loading.visibility = View.VISIBLE
                 }
+                is AnimalsState.Reloading -> {
+                    swipe_layout.isRefreshing = true
+                }
                 is AnimalsState.Succeed -> {
                     clearLoadingViews()
                     scrollListener?.loadingDone()
@@ -74,6 +77,6 @@ class HomeFragment : Fragment() {
 
     private fun clearLoadingViews() {
         progress_loading.visibility = View.GONE
-//        swipe_layout.isRefreshing = false
+        swipe_layout.isRefreshing = false
     }
 }
