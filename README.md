@@ -1,6 +1,5 @@
 # Adoption-Android
-簡易動物領養瀏覽器
-資料來自[農委會 OpenData](https://data.coa.gov.tw/Query/ServiceTransDetail.aspx?id=QcbUEzN6E6DL)
+簡易動物領養瀏覽器，資料來自[農委會 OpenData](https://data.coa.gov.tw/Query/ServiceTransDetail.aspx?id=QcbUEzN6E6DL)
 
 ## 概要
 - 主要頁面為`HomeFragment`，提供瀏覽領養動物的照片等資訊，手勢下滑可重新整理。API 每次抓取 20 筆資料，滑到底時觸發 loading more。
@@ -17,6 +16,7 @@ MVVM with Repository Pattern
 - `AnimalDetailFragment` 提供更多資訊
 - `AnimalDetailFragment` 點擊照片顯示完整圖片
 - `AnimalFilterFragment` 加上『清除』按鈕
+- 把文字都放到 `string.xml`
 - [Optional] `AnimalFilterFragment` 研究 API 是否支援複選和 not 邏輯
 - [Optional] `HomeFragment` 可切換為 Grid，只顯示照片並過濾掉沒有照片的動物
 - [Optional] 刪除無用的 Fragment 並加入『我的最愛頁面』
