@@ -18,6 +18,13 @@
 			app:exitAnim="@android:anim/slide_out_right"
 			app:popEnterAnim="@anim/nav_default_pop_enter_anim"
 			app:popExitAnim="@android:anim/slide_out_right" />
+		<action
+			android:id="@+id/action_home_to_animal_filter"
+			app:destination="@id/navigation_animal_filter"
+			app:enterAnim="@android:anim/slide_in_left"
+			app:exitAnim="@android:anim/slide_out_right"
+			app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+			app:popExitAnim="@android:anim/slide_out_right"/>
 	</fragment>
 
 	<fragment
@@ -41,13 +48,6 @@
 		<argument
 			android:name="animal"
 			app:argType="com.demo.lutas.adoption.model.Animal" />
-		<action
-			android:id="@+id/action_animal_detail_to_animal_filter"
-			app:destination="@id/navigation_animal_filter"
-			app:enterAnim="@android:anim/slide_in_left"
-			app:exitAnim="@android:anim/slide_out_right"
-			app:popEnterAnim="@anim/nav_default_pop_enter_anim"
-			app:popExitAnim="@android:anim/slide_out_right"/>
 	</fragment>
 
 	<fragment

@@ -1,9 +1,7 @@
 package com.demo.lutas.adoption.ui.home
 
 import android.os.Bundle
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
+import android.view.*
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -17,11 +15,18 @@ import org.koin.android.viewmodel.ext.android.viewModel
 class HomeFragment : Fragment() {
 
     private val viewModel by viewModel<HomeViewModel>()
+    private val navController by lazy {
+        findNavController()
+    }
     private val animalAdapter by lazy {
-        val navController = findNavController()
         AnimalAdapter(navController)
     }
     private var scrollListener: EndlessScrollListener? = null
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setHasOptionsMenu(true)
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -78,5 +83,25 @@ class HomeFragment : Fragment() {
     private fun clearLoadingViews() {
         progress_loading.visibility = View.GONE
         swipe_layout.isRefreshing = false
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
+        inflater.inflate(R.menu.home_menu, menu)
+        super.onCreateOptionsMenu(menu, inflater)
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        return when(item.itemId) {
+            R.id.menu_filter -> {
+                val action = HomeFragmentDirections.actionHomeToAnimalFilter()
+                navController.navigate(action)
+                true
+            }
+            android.R.id.home -> {
+                navController.popBackStack()
+                true
+            }
+            else -> super.onOptionsItemSelected(item)
+        }
     }
 }
