@@ -11,6 +11,11 @@ interface AdoptionService {
         @Query("UnitId") unitId: String,
         @Query("\$top") top: Int?,
         @Query("\$skip") skip: Int?,
-        @Query("\$filter") filter: String?
+        @Query("animal_kind") animalKind: String?,
+        @Query("animal_sex") animalSex: String?,
+        @Query("animal_sterilization") animalSterilization: String?,
+        @Query("animal_age") animalAge: String?,
+        @Query("animal_bodytype") animalBodyType: String?,
+        @Query("animal_area_pkid") animalAreaId: Int?
     ): List<Animal>
 }

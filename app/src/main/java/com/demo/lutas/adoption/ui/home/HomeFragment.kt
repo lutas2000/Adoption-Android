@@ -1,27 +1,35 @@
 package com.demo.lutas.adoption.ui.home
 
 import android.os.Bundle
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
+import android.view.*
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.demo.lutas.adoption.MainViewModel
 import com.demo.lutas.adoption.R
 import com.demo.lutas.adoption.observeNonNull
 import com.demo.lutas.adoption.ui.EndlessScrollListener
 import kotlinx.android.synthetic.main.fragment_home.*
+import org.koin.android.viewmodel.ext.android.sharedViewModel
 import org.koin.android.viewmodel.ext.android.viewModel
 
 
 class HomeFragment : Fragment() {
 
+    private val mainViewModel by sharedViewModel<MainViewModel>()
     private val viewModel by viewModel<HomeViewModel>()
+    private val navController by lazy {
+        findNavController()
+    }
     private val animalAdapter by lazy {
-        val navController = findNavController()
         AnimalAdapter(navController)
     }
     private var scrollListener: EndlessScrollListener? = null
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setHasOptionsMenu(true)
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -35,19 +43,19 @@ class HomeFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         initView()
         observeData()
-        viewModel.fetchAnimals()
+        viewModel.fetchAnimals(mainViewModel.animalFilter)
     }
 
     private fun initView() {
         swipe_layout.setOnRefreshListener {
-            viewModel.fetchAnimals()
+            viewModel.fetchAnimals(mainViewModel.animalFilter)
         }
         recycler.apply {
             adapter = animalAdapter
             val linearLayoutManager = LinearLayoutManager(context)
             layoutManager = linearLayoutManager
             scrollListener = EndlessScrollListener(linearLayoutManager) {
-                viewModel.fetchMoreAnimals()
+                viewModel.fetchMoreAnimals(mainViewModel.animalFilter)
             }
             addOnScrollListener(scrollListener!!)
         }
@@ -78,5 +86,25 @@ class HomeFragment : Fragment() {
     private fun clearLoadingViews() {
         progress_loading.visibility = View.GONE
         swipe_layout.isRefreshing = false
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
+        inflater.inflate(R.menu.home_menu, menu)
+        super.onCreateOptionsMenu(menu, inflater)
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        return when(item.itemId) {
+            R.id.menu_filter -> {
+                val action = HomeFragmentDirections.actionHomeToAnimalFilter()
+                navController.navigate(action)
+                true
+            }
+            android.R.id.home -> {
+                navController.popBackStack()
+                true
+            }
+            else -> super.onOptionsItemSelected(item)
+        }
     }
 }

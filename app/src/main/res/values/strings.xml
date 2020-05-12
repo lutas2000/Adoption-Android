@@ -6,4 +6,5 @@
 	<string name="title_detail">詳細資訊</string>
 	<string name="title_animal">動物資訊</string>
 	<string name="title_shelter">收容所資訊</string>
+	<string name="title_filter">進階搜尋</string>
 </resources>
