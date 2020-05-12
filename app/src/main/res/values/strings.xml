@@ -1,0 +1,9 @@
+<resources>
+	<string name="app_name">Adoption</string>
+	<string name="title_home">Home</string>
+	<string name="title_dashboard">Dashboard</string>
+	<string name="title_notifications">Notifications</string>
+	<string name="title_detail">詳細資訊</string>
+	<string name="title_animal">動物資訊</string>
+	<string name="title_shelter">收容所資訊</string>
+</resources>

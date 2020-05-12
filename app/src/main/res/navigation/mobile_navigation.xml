@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation
+	xmlns:android="http://schemas.android.com/apk/res/android"
+	xmlns:app="http://schemas.android.com/apk/res-auto"
+	xmlns:tools="http://schemas.android.com/tools"
+	android:id="@+id/mobile_navigation"
+	app:startDestination="@+id/navigation_home">
+
+	<fragment
+		android:id="@+id/navigation_home"
+		android:name="com.demo.lutas.adoption.ui.home.HomeFragment"
+		android:label="@string/title_home"
+		tools:layout="@layout/fragment_home" >
+		<action
+			android:id="@+id/action_home_to_animal_detail"
+			app:destination="@id/navigation_animal_detail"
+			app:enterAnim="@android:anim/slide_in_left"
+			app:exitAnim="@android:anim/slide_out_right"
+			app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+			app:popExitAnim="@android:anim/slide_out_right" />
+	</fragment>
+
+	<fragment
+		android:id="@+id/navigation_dashboard"
+		android:name="com.demo.lutas.adoption.ui.dashboard.DashboardFragment"
+		android:label="@string/title_dashboard"
+		tools:layout="@layout/fragment_dashboard" />
+
+	<fragment
+		android:id="@+id/navigation_notifications"
+		android:name="com.demo.lutas.adoption.ui.notifications.NotificationsFragment"
+		android:label="@string/title_notifications"
+		tools:layout="@layout/fragment_notifications" />
+
+	<fragment
+		android:id="@+id/navigation_animal_detail"
+		android:name="com.demo.lutas.adoption.ui.detail.AnimalDetailFragment"
+		android:label="@string/title_detail"
+		app:popUpTo="@id/navigation_home"
+		tools:layout="@layout/fragment_animal_detail" >
+		<argument
+			android:name="animal"
+			app:argType="com.demo.lutas.adoption.model.Animal" />
+	</fragment>
+</navigation>
