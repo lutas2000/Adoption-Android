@@ -56,7 +56,7 @@ dependencies {
     implementation "androidx.swiperefreshlayout:swiperefreshlayout:1.0.0"
     implementation 'androidx.lifecycle:lifecycle-extensions:2.2.0'
     // TagGroup
-    implementation 'me.gujun.android.taggroup:library:1.4@aar'
+    implementation 'com.android.geolo.library.taggroup:taggroup:1.0.1@aar'
     // Navigation
     implementation "androidx.navigation:navigation-fragment:$navigation_version"
     implementation "androidx.navigation:navigation-ui:$navigation_version"

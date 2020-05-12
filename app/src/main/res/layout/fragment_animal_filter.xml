@@ -18,7 +18,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="動物種類"/>
-            <me.gujun.android.taggroup.TagGroup
+            <com.android.geolo.library.taggroup.GeoloTagGroup
                 android:id="@+id/tag_group_kind"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -30,7 +30,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
                 android:text="動物性別"/>
-            <me.gujun.android.taggroup.TagGroup
+            <com.android.geolo.library.taggroup.GeoloTagGroup
                 android:id="@+id/tag_group_sex"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -42,7 +42,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
                 android:text="是否絕育"/>
-            <me.gujun.android.taggroup.TagGroup
+            <com.android.geolo.library.taggroup.GeoloTagGroup
                 android:id="@+id/tag_group_sterilization"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -54,7 +54,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
                 android:text="年齡"/>
-            <me.gujun.android.taggroup.TagGroup
+            <com.android.geolo.library.taggroup.GeoloTagGroup
                 android:id="@+id/tag_group_age"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -66,8 +66,8 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
                 android:text="體型"/>
-            <me.gujun.android.taggroup.TagGroup
-                android:id="@+id/tag_group_size"
+            <com.android.geolo.library.taggroup.GeoloTagGroup
+                android:id="@+id/tag_group_body_type"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="4dp"/>
@@ -78,7 +78,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
                 android:text="收容所縣市"/>
-            <me.gujun.android.taggroup.TagGroup
+            <com.android.geolo.library.taggroup.GeoloTagGroup
                 android:id="@+id/tag_group_area"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"

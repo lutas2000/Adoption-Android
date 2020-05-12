@@ -5,15 +5,18 @@ import android.view.*
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.demo.lutas.adoption.MainViewModel
 import com.demo.lutas.adoption.R
 import com.demo.lutas.adoption.observeNonNull
 import com.demo.lutas.adoption.ui.EndlessScrollListener
 import kotlinx.android.synthetic.main.fragment_home.*
+import org.koin.android.viewmodel.ext.android.sharedViewModel
 import org.koin.android.viewmodel.ext.android.viewModel
 
 
 class HomeFragment : Fragment() {
 
+    private val mainViewModel by sharedViewModel<MainViewModel>()
     private val viewModel by viewModel<HomeViewModel>()
     private val navController by lazy {
         findNavController()
@@ -40,19 +43,19 @@ class HomeFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         initView()
         observeData()
-        viewModel.fetchAnimals()
+        viewModel.fetchAnimals(mainViewModel.animalFilter)
     }
 
     private fun initView() {
         swipe_layout.setOnRefreshListener {
-            viewModel.fetchAnimals()
+            viewModel.fetchAnimals(mainViewModel.animalFilter)
         }
         recycler.apply {
             adapter = animalAdapter
             val linearLayoutManager = LinearLayoutManager(context)
             layoutManager = linearLayoutManager
             scrollListener = EndlessScrollListener(linearLayoutManager) {
-                viewModel.fetchMoreAnimals()
+                viewModel.fetchMoreAnimals(mainViewModel.animalFilter)
             }
             addOnScrollListener(scrollListener!!)
         }
