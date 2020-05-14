@@ -16,19 +16,30 @@ class HomeViewModel(
         get() = _animalsState
     private val currentAnimals
         get() = (_animalsState.value as? AnimalsState.Succeed)?.animals ?: emptyList()
+    private var lastFilter: AdoptionRepository.Filter? = AdoptionRepository.Filter()
 
     fun fetchAnimals(filter: AdoptionRepository.Filter?) {
-        fetchAnimals(0, filter)
+        if (lastFilter == filter) return
+        lastFilter = filter
+        fetchAnimals(0, filter, AnimalsState.Loading)
     }
 
-    fun fetchMoreAnimals(filter: AdoptionRepository.Filter?) {
+    fun reloadAnimals() {
+        fetchAnimals(0, lastFilter, AnimalsState.Reloading)
+    }
+
+    fun fetchMoreAnimals() {
         val skip = currentAnimals.size
-        fetchAnimals(skip, filter)
+        fetchAnimals(skip, lastFilter, AnimalsState.Loading)
     }
 
-    private fun fetchAnimals(skip: Int, filter: AdoptionRepository.Filter?) {
+    private fun fetchAnimals(
+        skip: Int,
+        filter: AdoptionRepository.Filter?,
+        loadingState: AnimalsState
+    ) {
         val oldData = currentAnimals
-        _animalsState.value = AnimalsState.Loading
+        _animalsState.value = loadingState
         viewModelScope.launch {
             try {
                 val response = adoptionRepository.fetchAnimals(20, skip, filter)
