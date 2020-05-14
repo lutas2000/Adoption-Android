@@ -48,14 +48,14 @@ class HomeFragment : Fragment() {
 
     private fun initView() {
         swipe_layout.setOnRefreshListener {
-            viewModel.fetchAnimals(mainViewModel.animalFilter)
+            viewModel.reloadAnimals()
         }
         recycler.apply {
             adapter = animalAdapter
             val linearLayoutManager = LinearLayoutManager(context)
             layoutManager = linearLayoutManager
             scrollListener = EndlessScrollListener(linearLayoutManager) {
-                viewModel.fetchMoreAnimals(mainViewModel.animalFilter)
+                viewModel.fetchMoreAnimals()
             }
             addOnScrollListener(scrollListener!!)
         }

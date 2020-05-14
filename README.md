@@ -22,7 +22,6 @@ MVVM with Repository Pattern
 - [Optional] 刪除無用的 Fragment 並加入『我的最愛頁面』
 
 ## 已知 Issue
-- `HomeFragment` 旋轉或重回畫面會重打 API
 
 ## Dependancy
 - Navigation - Navigation for Fragments
